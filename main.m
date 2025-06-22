@@ -1,0 +1,20 @@
+clear;clc
+testN=10;
+size_ss=zeros(testN,1);size_ss1=size_ss;
+DoE=cell(10,1);
+pf_true=zeros(testN,1);pf_RBF=pf_true;cov_RBF=pf_true;CPUtime=pf_true;
+dim=40;
+for i=1:testN
+ss=lhsdesign(20,dim);
+ss=-4+8*ss;
+s=randn(1e6,dim);
+[ss,g,pf_truei,pf_RBFi,cov,timei]=ALR_MCS(ss,s);
+    %%
+    CPUtime(i)=timei;
+    cov_RBF(i)=cov;
+    pf_RBF(i)=pf_RBFi;
+    DoE{i}.ss=ss;
+    DoE{i}.g=g;
+    size_ss(i)=size(ss,1);
+    pf_true(i)=pf_truei;    
+end
