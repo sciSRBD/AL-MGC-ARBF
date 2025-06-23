@@ -2,6 +2,21 @@ function g=true_objfun(u)
 %% A nonlinear function 
 x=u;
 g=1.5-x(:,end)+0.01*sum(x(:,1:end-1).^2,2);
+%% Section 5.2 d=60
+% a=830000;
+% x=utox(u,1,[3.41,0.2]);
+% [N, d] = size(x);
+% g = zeros(N,1);  % 初始化输出
+% for n = 1:N
+%     x_row = x(n, :);  % 第 n 个样本
+%     term1 = (x_row(1) - 1)^2;
+% 
+%     sum_term = 0;
+%     for i = 2:d
+%         sum_term = sum_term + i * (2 * x_row(i)^2 - x_row(i-1))^2;
+%     end
+%     g(n) = a - term1 - sum_term;
+% end
 %% A cantilever beam with 215 random variables
 % Sy=utox(u(:,1),1,[600,60])*1e6;%MPa
 % w=utox(u(:,2),1,[0.2,0.001]);%m
